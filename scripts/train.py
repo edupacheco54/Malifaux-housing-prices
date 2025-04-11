@@ -29,7 +29,7 @@ def get_tree_method():
 
         return "hist"
 
-    except:
+    except Exception:
         return "hist"
 
 
