@@ -6,8 +6,9 @@ def run_script(script_name):
     """
     Run a script file.
     """
-    print(f"Running {script_name}...")
-    subprocess.run(["python", script_name], check=True)
+    script_path = os.path.join("scripts", script_name)
+    print(f"Running {script_path}...")
+    subprocess.run(["python", script_path], check=True)
 
 
 def main():
@@ -17,10 +18,8 @@ def main():
     scripts = ["preprocessing.py", "train.py", "test.py"]
 
     for script in scripts:
-        if os.path.exists(script):
-            run_script(script)
-        else:
-            print(f"Error: {script} not found.")
+        run_script(script)
+
     print("All scripts executed!")
 
 
