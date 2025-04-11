@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 
 def run_script(script_name):
@@ -8,7 +9,7 @@ def run_script(script_name):
     """
     script_path = os.path.join("scripts", script_name)
     print(f"Running {script_path}...")
-    subprocess.run(["python", script_path], check=True)
+    subprocess.run([sys.executable, script_path], check=True)
 
 
 def main():

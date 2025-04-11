@@ -2,6 +2,6 @@
 
 echo "Running the full pipeline..."
 
-python scripts/main.py
+uv scripts/main.py
 
 echo "Pipeline complete succesfully!"
