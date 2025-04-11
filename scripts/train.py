@@ -6,18 +6,22 @@ from sklearn.linear_model import Ridge, Lasso
 from xgboost import XGBRegressor
 import xgboost as xgb
 
+ROOT = os.path.dirname(os.path.dirname(__file__))
+DATA_DIR = os.path.join(ROOT, "data")
+MODEL_DIR = os.path.join(ROOT, "models")
+
 
 def load_data():
     """
     Load cleaned training dataset.
     """
-    train_path = os.path.join("..", "data", "train_clean.csv")
+    train_path = os.path.join(DATA_DIR, "train_clean.csv")
     return pd.read_csv(train_path)
 
 
 def get_tree_method():
     """
-    Determine apprpriate tree for XGBoost.
+    Determine appropriate tree method for XGBoost.
     """
     try:
         tree_method = os.environ.get("XGB_TREE_METHOD", None)
@@ -35,7 +39,7 @@ def get_tree_method():
 
 def train_models(X_train, y_train):
     """
-    Train multiple models and select best one.
+    Train multiple models and select the best one.
     """
     tree_method = get_tree_method()
     print(f"Using XGBoost tree method: {tree_method}")
@@ -69,7 +73,8 @@ def save_model(model):
     """
     Save the trained model.
     """
-    model_path = os.path.join("..", "models", "best_model.pkl")
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    model_path = os.path.join(MODEL_DIR, "best_model.pkl")
     joblib.dump(model, model_path)
     print("Model saved to best_model.pkl")
 

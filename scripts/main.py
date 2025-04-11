@@ -2,19 +2,26 @@ import os
 import subprocess
 import sys
 
+ROOT = (
+    os.path.dirname(os.path.dirname(__file__))
+    if "__file__" in globals()
+    else os.getcwd()
+)
+SCRIPTS_DIR = os.path.join(ROOT, "scripts")
+
 
 def run_script(script_name):
     """
-    Run a script file.
+    Run a script from the scripts directory.
     """
-    script_path = os.path.join("scripts", script_name)
+    script_path = os.path.join(SCRIPTS_DIR, script_name)
     print(f"Running {script_path}...")
     subprocess.run([sys.executable, script_path], check=True)
 
 
 def main():
     """
-    Execute full pipeline.
+    Execute the full pipeline: preprocessing → training → testing.
     """
     scripts = ["preprocessing.py", "train.py", "test.py"]
 
