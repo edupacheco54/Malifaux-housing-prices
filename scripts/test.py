@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 import joblib
-import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
 DATA_DIR = os.path.join(ROOT, "data")
@@ -28,9 +27,9 @@ def load_model():
 
 def generate_predictions(model, test_df):
     """
-    Generate predictions using the trained model.
+    Generate predictions for test data.
     """
-    y_pred = np.exp(model.predict(test_df))
+    y_pred = model.predict(test_df)
     return y_pred
 
 
